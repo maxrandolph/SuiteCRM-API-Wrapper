@@ -149,7 +149,7 @@ class SuiteAPI
    *
    * @return array The result(s) of your search
    */
-  public function email_search($email_string){
+  public function emailSearch($email_string){
     $url = $this->url;
     $session_id = $this->session_id;
     $search_by_module_parameters = array(
@@ -264,6 +264,7 @@ class SuiteAPI
    if (!is_object($result)){
      die("Error handling result.\n");
    }
+   return($result);
  }
  /**
   * Create a task and assign it to specified user_id
@@ -283,13 +284,13 @@ class SuiteAPI
      $url = $this->url;
      $client = new \SugarHttpClient;
      $parameters = array(
-     'session' => $this->$session_id, //Session ID
+     'session' => $this->session_id, //Session ID
      'module' => "Tasks",  //Module name
      'name_value_list' => array (
              array('name' => 'name', 'value' => $custnum.$task),
              array('name' => 'description', 'value' => $description),
-             array('name' => 'assigned_user_id', 'value' => $assinged_user),
- 			array('name' => 'date_due', 'value' => $date),
+             array('name' => 'assigned_user_id', 'value' => $assigned_user),
+ 			array('name' => 'date_due', 'value' => $due_date),
  			array('name' => 'contact_id', 'value' => $custid),
  			array('name' => 'status', 'value' => "Not Started")  //High priority fix this. Default parameter = not started
          ),
@@ -332,7 +333,7 @@ class SuiteAPI
     $url = $this->url;
     $client = new \SugarHttpClient;
     $parameters = array(
-    'session' => $session, //Session ID
+    'session' => $this->session_id, //Session ID
     'module' => "Calls",  //Module name
     'name_value_list' => array (
             array('name' => 'name', 'value' => "Phone Cust #".$custnum),
@@ -375,11 +376,10 @@ class SuiteAPI
    */
   public function newRecord($module, $infoArray){
     $url = $this->url;
-    require_once('./SugarHttpClient.php');
 
-    $client = new SugarHttpClient;
+    $client = new \SugarHttpClient;
     $parameters = array(
-      'session' => $session, //Session ID
+      'session' => $this->session_id, //Session ID
       'module' => $module,  //Module name
 
       'name_value_list' => array (
@@ -428,10 +428,9 @@ class SuiteAPI
    */
  public function updateRecord($module,$infoArray){
     $url = $this->url;
-    require_once('./SugarHttpClient.php');
     $client = new \SugarHttpClient;
     $parameters = array(
-     'session' => $session, //Session ID
+     'session' => $this->session_id, //Session ID
      'module' => $module,  //Module name
      'name_value_list' => array (
              array('name' => 'id', 'value' => $infoArray['id']),
@@ -490,8 +489,7 @@ class SuiteAPI
           return $shortStr;
         }
       }
-     $url = $this->url
-     require_once('./SugarHttpClient.php');
+     $url = $this->url;
      $client = new \SugarHttpClient;
      $name_value_array = array();
      $duplicate_email_array = array();
@@ -536,7 +534,7 @@ class SuiteAPI
      );
    }
      $parameters = array(
-       'session' => $session, //Session ID
+       'session' => $this->session_id, //Session ID
        'module' => $module,  //Module name
        'name_value_list' => $name_value_array
      );
