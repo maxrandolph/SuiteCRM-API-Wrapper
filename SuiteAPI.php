@@ -4,7 +4,7 @@ require_once('../SugarHttpClient.php');
 
 class SuiteAPI
 {
-  private $url        = 'http://crm.home.setonhome.org/suitecrm/service/v4_1/rest.php';
+  private $url        = '{PATH TO REST.PHP WITHIN YOUR SUITECRM}';
   public  $session_id = '';  //This is essentially the access token
   public  $module     = '';
 
@@ -55,8 +55,8 @@ class SuiteAPI
     // Set Suite username and password here
     $parameters = array(
         'user_auth' => array(
-          'user_name' => 'admin',
-          'password' => md5('admin')
+          'user_name' => '{YOUR ADMIN USERNAME}',
+          'password' => md5('{YOUR ADMIN PASSWORD}')
         )
     );
 
