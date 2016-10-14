@@ -8,7 +8,7 @@ $api = new SuiteAPI\SuiteAPI;
 
 $api->newSession(); // instantiate the session. $test->session_id is set to the accesstoken
 $searchtest       = $api->search("83577","custnum_c");
-$searchemailtest  = $api->emailSearch("lisacuster1@aol.com");
+$searchemailtest  = $api->emailSearch("email@email.com");
 $assigncalltest   = $api->assignCallToContact("2a04ecd3-67b5-a755-403f-580129938e7c","10003fd3-efd7-e7ea-6005-58000af86c5e");
 $maketasktest     = $api->makeTask("2016-10-15 18:45:00","dcd380d0-b01a-f359-13e8-57ffedd49fdc","Sample note","sample task name","sample description","123123","1");
 $makecalltest     = $api->makeCall("2016-10-15 18:45:00","dcd380d0-b01a-f359-13e8-57ffedd49fdc","1","123123","Call this person sample text");
